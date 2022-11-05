@@ -1,16 +1,8 @@
 <div class="card margins" id="listOrderContainer">
     <div class="card-body">
 
-
-
         <div class="card-body">
 
-            <!-- <div class="mb-3">
-                <label for="searchDoctor" class="form-label">Search Doctor</label> <br>
-                <input type="text" class="form-control" placeholder="Insert doctor name..."
-                    aria-label="Recipient's doctorname" aria-describedby="searchButton" id="searchDoctor"
-                    (keyup)="findDoctor(prefix)" [(ngModel)]="this.prefix" name="prefix">
-            </div> -->
 
             <div class="mb-3 d-flex justify-content-end">
                 <button routerLink="../new-order" class="btn btn-success ml-2" (click)="newOrder()">Novo
@@ -27,9 +19,6 @@
                         <tr *ngFor="let order of this.orderService.orderList; let index = index">
                             <td class="p-1">
                                 <div class="d-flex gap-1 justify-content-center p-1">
-                                    <button class="mx-1 btn btn-primary d-flex align-items-center justify-content-center buttonsInterative" (click)="detailOrder(order)">
-                                        <span class="material-icons-sharp">description</span>
-                                    </button>
                                     <button class="mx-1 btn btn-success d-flex align-items-center justify-content-center buttonsInterative" (click)="updateOrder(order.id)">
                                         <span class="material-icons-sharp">edit</span>
                                     </button>

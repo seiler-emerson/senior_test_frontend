@@ -25,13 +25,6 @@
 
         <div class="card-body">
 
-            <!-- <div class="mb-3">
-                <label for="searchDoctor" class="form-label">Search Doctor</label> <br>
-                <input type="text" class="form-control" placeholder="Insert doctor name..."
-                    aria-label="Recipient's doctorname" aria-describedby="searchButton" id="searchDoctor"
-                    (keyup)="findDoctor(prefix)" [(ngModel)]="this.prefix" name="prefix">
-            </div> -->
-
             <div class="mb-3 d-flex justify-content-end">
                 <button routerLink="../new-productservice" class="btn btn-success ml-2" (click)="newProductService()">Novo
                     Produto / Serviço</button>
@@ -40,7 +33,6 @@
                 <table class="table table-bordered table-hover table-striped">
                     <thead class="text-center">
                         <th class="th-button"></th>
-                        <th>ID</th>
                         <th>Nome</th>
                         <th>Preço</th>
                         <th>Quantidade</th>
@@ -51,9 +43,6 @@
                         <tr *ngFor="let productService of this.productServiceService.productServiceList; let index = index">
                             <td class="p-1">
                                 <div class="d-flex gap-1 justify-content-center p-1">
-                                    <button class="mx-1 btn btn-primary d-flex align-items-center justify-content-center buttonsInterative" (click)="detailProductService(productService)">
-                                        <span class="material-icons-sharp">description</span>
-                                    </button>
                                     <button class="mx-1 btn btn-success d-flex align-items-center justify-content-center buttonsInterative" (click)="updateProductService(productService.id)">
                                         <span class="material-icons-sharp">edit</span>
                                     </button>
@@ -62,7 +51,6 @@
                                     </button>
                                 </div>
                             </td>
-                            <td>{{ productService.id }}</td>
                             <td>{{ productService.name }}</td>
                             <td>{{"R$ "+productService.price }}</td>
                             <td>{{ productService.quantity }}</td>

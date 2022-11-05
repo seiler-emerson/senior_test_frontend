@@ -55,7 +55,10 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <input type="number" class="form-select form-control" name="quantityPurchased" id="quantityPurchased" [(ngModel)]="quantityPurchased">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="quantityPurchased">Quantidade</label>
+                            <input type="number" class="form-select form-control" name="quantityPurchased" id="quantityPurchased" [(ngModel)]="quantityPurchased">
+                        </div>
                     </div>
                     <div class="col-3">
                         <button type="button" class="form-select form-control btn btn-primary" (click)="addOrderItem()">Adicionar</button>
@@ -89,7 +92,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-1">
+                <div class="col-2">
                     <h3>Desconto (%)</h3>
                 </div>
                 <div class="col-2">
@@ -99,11 +102,11 @@
                 <div class="col-1">
                     <button type="button" class="form-select form-control btn btn-primary" (click)="updateOrder()">Aplicar</button>
                 </div>
-                <div class="col-5"></div>
+                <div class="col-2"></div>
                 <div class="col align-text-start">
                     <h3>Valor Pedido:</h3>
                 </div>
-                <div class="col-1">
+                <div class="col-2">
                     <h4>R$ {{ amount }}</h4>
                 </div>
                 
