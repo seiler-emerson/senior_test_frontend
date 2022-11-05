@@ -1,0 +1,78 @@
+<div class="card margins" id="listProductServiceContainer">
+    <div class="card-body">
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">DELETAR PRODUTO/SERVIÇO</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja deletar? podem existir ordens com esse produto!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            (click)="deleteProductService(productIdSelected)">Deletar Produto/Serviço</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <!-- <div class="mb-3">
+                <label for="searchDoctor" class="form-label">Search Doctor</label> <br>
+                <input type="text" class="form-control" placeholder="Insert doctor name..."
+                    aria-label="Recipient's doctorname" aria-describedby="searchButton" id="searchDoctor"
+                    (keyup)="findDoctor(prefix)" [(ngModel)]="this.prefix" name="prefix">
+            </div> -->
+
+            <div class="mb-3 d-flex justify-content-end">
+                <button routerLink="../new-productservice" class="btn btn-success ml-2" (click)="newProductService()">Novo
+                    Produto / Serviço</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead class="text-center">
+                        <th class="th-button"></th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Unidade</th>
+                        <th>Tipo</th>
+                    </thead>
+                    <tbody class="text-center" id="tbodyProductService">
+                        <tr *ngFor="let productService of this.productServiceService.productServiceList; let index = index">
+                            <td class="p-1">
+                                <div class="d-flex gap-1 justify-content-center p-1">
+                                    <button class="mx-1 btn btn-primary d-flex align-items-center justify-content-center buttonsInterative" (click)="detailProductService(productService)">
+                                        <span class="material-icons-sharp">description</span>
+                                    </button>
+                                    <button class="mx-1 btn btn-success d-flex align-items-center justify-content-center buttonsInterative" (click)="updateProductService(productService.id)">
+                                        <span class="material-icons-sharp">edit</span>
+                                    </button>
+                                    <button class="mx-1 btn btn-danger d-flex align-items-center justify-content-center buttonsInterative" data-toggle="modal" data-target="#deleteModal" (click)="saveProductServiceId(productService)">
+                                        <span class="material-icons-sharp">delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>{{ productService.id }}</td>
+                            <td>{{ productService.name }}</td>
+                            <td>{{"R$ "+productService.price }}</td>
+                            <td>{{ productService.quantity }}</td>
+                            <td>{{ productService.unitMeasurement }}</td>
+                            <td>{{ productService.type }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>

@@ -1,0 +1,33 @@
+<aside class="main-sidebar bg-success elevation-4 position-fixed">
+    <a routerLink="dashboard" class="brand-link">
+      <img src="../assets/images/logo.png" alt="Logo" class="brand-image elevation-3"
+        style="opacity: 0.8" />
+      <span class="brand-text font-weight-light text-light">LOJA SENIOR</span>
+    </a>
+  
+    <div class="sidebar ">
+      <nav class="menu-height mt-2 d-flex flex-column justify-content-between">
+
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li *ngFor="let link of links" class="nav-item">
+            <a [routerLink]="link.rota" class="nav-link text-light d-flex">
+              <span class="material-icons-sharp">{{link.icon}}</span>
+              <p class="mx-2 ">{{link.textContent}}</p>
+            </a>
+            <ul *ngIf="link.submenu" class="nav nav-treeview">
+              <li *ngFor="let menu of link.submenu" class="nav-item ">
+                <a [routerLink]="menu.rota" class="nav-link text-light">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{menu.title}}</p>
+                </a>
+              </li>
+            </ul>
+
+          </li>  
+        </ul>
+       
+        
+      </nav>
+    </div>
+  </aside>
+  
