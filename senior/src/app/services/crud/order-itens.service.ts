@@ -47,6 +47,6 @@ export class OrderItensService {
 
     getByOrderId(id: any): Observable<any> {
   
-      return this.http.get<any>(this.apiUrl + '/orderitens/findorder/' + id);
+      return this.http.get<any>(this.apiUrl + '/findorder/' + id);
     }
 }

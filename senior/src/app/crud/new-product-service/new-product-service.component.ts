@@ -46,7 +46,7 @@ export class NewProductServiceComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
+        // console.log(response);
           this.productServiceService.productServiceList.push(response);
       });
       this.clearInputs()

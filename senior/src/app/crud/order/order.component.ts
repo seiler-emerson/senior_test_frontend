@@ -4,6 +4,7 @@ import { catchError, of } from 'rxjs';
 import { OrderService } from 'src/app/services/crud/order.service';
 import { ProductServiceService } from 'src/app/services/crud/product-service.service';
 import { SystemService } from 'src/app/services/system.service';
+import { NewOrderComponent } from '../new-order/new-order.component';
 
 @Component({
   selector: 'app-order',
@@ -19,24 +20,22 @@ export class OrderComponent implements OnInit {
     private systemService: SystemService,
     public orderService: OrderService,
     public productServiceService: ProductServiceService,
-    private router: Router
+    private router: Router,
+    public newOrderComponent: NewOrderComponent
   ) { }
 
   ngOnInit(): void {
     this.sendTitle()
     this.listAllOrder()
-    console.log(this.orderService.orderList);
     this.order = {}
-    console.log(this.productServiceService.productServiceList);
-    
   }
+
 
   listAllOrder(): void {
     this.orderService
       .getAll()
       .pipe(
         catchError((error) => {
-        
           return of(false);
         })
       )
@@ -71,26 +70,12 @@ export class OrderComponent implements OnInit {
       .subscribe((response: any) => {
         this.orderService.order = response;
         this.router.navigateByUrl("new-order")
-        console.log(this.orderService.order);
-        
       });
   }
 
   newOrder() {
     this.orderService.updateButtonHidden = true
-  }
-
-  deleteOrder(order: any) {
-    this.orderService
-      .delete(order)
-      .pipe(
-        catchError((error) => {
-          return of(error)
-        })
-      )
-      .subscribe((response: any) => {
-        this.orderService.orderList.splice(this.orderService.orderList.indexOf(order), 1);
-      })
+    this.router.navigateByUrl("new-order")
   }
 
   saveOrderId(order: number) {
@@ -111,11 +96,7 @@ export class OrderComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
           this.orderService.orderList.push(response);
-          console.log(response);
-          
       });
-      // this.router.navigateByUrl("order")
   }
 }

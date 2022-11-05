@@ -1,24 +1,110 @@
 <div class="card margins" id="newDoctorContainer">
+
+
     <div class="card-body">
+
+        <div class="modal fade" id="deleteAlertModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">DELETAR PEDIDO</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Antes de deletar o pedido é necessário deletar os itens existentes!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">DELETAR PEDIDO</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja deletar o pedido?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            (click)="deleteOrder(this.orderService.order)">Deletar Pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <form #formOrder="ngForm" (ngSubmit)="onSubmit()" >
             <div class="card-body">
                 <div class="row">
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="prductList">Product/Service</label>
+                            <select class="form-select form-control" [(ngModel)]="productService" name="prductList" id="prductList">
+                              <option [ngValue]="productService" *ngFor="let productService of this.productServiceService.productServiceList;let index = index">{{ productService.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <input type="number" class="form-select form-control" name="quantityPurchased" id="quantityPurchased" [(ngModel)]="quantityPurchased">
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="form-select form-control btn btn-primary" (click)="addOrderItem()">Adicionar</button>
+                    </div>
+                   <br>
 
-                   
-       
-
-
-                   
+                   <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead class="text-center">
+                            <th>Produto</th>
+                            <th>Valor Unitário</th>
+                            <th>Quantidade</th>
+                            <th class="th-button"></th>
+                        </thead>
+                        <tbody class="text-center" id="tbodyOrder">
+                            <tr *ngFor="let orderItens of this.orderItensService.orderItensList; let index = index">
+                                <td>{{ orderItens.itens.name }}</td>
+                                <td>{{ orderItens.itens.price }}</td>
+                                <td>{{ orderItens.quantityPurchased }}</td>
+                                <td class="p-1">
+                                    <div class="d-flex gap-1 justify-content-center p-1">
+                                        <button type="button" class="mx-1 btn btn-danger d-flex align-items-center justify-content-center buttonsInterative" (click)=deleteOrderItens(orderItens)>
+                                            <span class="material-icons-sharp">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-1">
                     <h3>Desconto (%)</h3>
-                    <input type="number" [(ngModel)]="order.discount" name="discount" id="discount"> 
                 </div>
-                <div class="col">
-                    <h3>Valor Pedido</h3>
-                    <h4>R$ {{ order.amount }}</h4>
+                <div class="col-2">
+                    <input type="number" class="form-select form-control" [(ngModel)]="order.discount" name="discount" id="discount"> 
+
+                </div>
+                <div class="col-1">
+                    <button type="button" class="form-select form-control btn btn-primary" (click)="updateOrder()">Aplicar</button>
+                </div>
+                <div class="col-5"></div>
+                <div class="col align-text-start">
+                    <h3>Valor Pedido:</h3>
+                </div>
+                <div class="col-1">
+                    <h4>R$ {{ amount }}</h4>
                 </div>
                 
                 <br>
@@ -28,10 +114,11 @@
 
             
             <div class="d-flex flex-row justify-content-center gap-1">
-                <button type="submit" class="mx-1 btn btn-primary" [hidden]="!updateButtonHidden" [disabled]="!formOrder.valid">Salvar</button>
-                <button type="submit" class="mx-1 btn btn-success" [hidden]="updateButtonHidden" [disabled]="!formOrder.valid">Atualizar</button>
+                <button type="submit" class="mx-1 btn btn-primary" [hidden]="!updateButtonHidden" [disabled]="!formOrder.valid" >Salvar</button>
+                <button type="submit" class="mx-1 btn btn-success" [hidden]="updateButtonHidden" [disabled]="!formOrder.valid" >Atualizar</button>
+                <button [hidden]="!updateButtonHidden" *ngIf="(this.orderItensService.orderItensList.length === 0)"  type="button" class="mx-1 btn btn-danger d-flex align-items-center justify-content-center buttonsInterative" data-toggle="modal" data-target=#deleteModal>Deletar </button>
                 <button type="button" class="mx-1 btn btn-outline-danger" (click)="cancelRecord()">Cancelar</button>
-
+                <button [hidden]="!updateButtonHidden" *ngIf="(this.orderItensService.orderItensList.length > 0)"  type="button" class="mx-1 btn btn-danger d-flex align-items-center justify-content-center buttonsInterative" data-toggle="modal" data-target=#deleteAlertModal>Deletar</button>
             </div>
             
         </form>

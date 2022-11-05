@@ -22,7 +22,7 @@ export class ProductServiceComponent implements OnInit {
   ngOnInit(): void {
     this.sendTitle()
     this.listAllProductService()
-    console.log(this.productServiceService.productServiceList);
+    // console.log(this.productServiceService.productServiceList);
     
   }
 

@@ -9,8 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OrderItensComponent } from './order-itens/order-itens.component';
-import { NewOrderItensComponent } from './new-order-itens/new-order-itens.component';
+
 
 
 
@@ -21,8 +20,7 @@ import { NewOrderItensComponent } from './new-order-itens/new-order-itens.compon
     NewOrderComponent,
     OrderComponent,
     DashboardComponent,
-    OrderItensComponent,
-    NewOrderItensComponent
+
   ],
   imports: [
     CommonModule,
@@ -32,7 +30,7 @@ import { NewOrderItensComponent } from './new-order-itens/new-order-itens.compon
     ReactiveFormsModule,
   ],
   exports: [
-    NewProductServiceComponent
-  ]
+  ],
+  providers:[NewOrderComponent]
 })
 export class CrudModule { }
