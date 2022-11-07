@@ -1,9 +1,9 @@
-## **Test Senior Backend**
+## **Test Senior Frontend**
 
 ## **🗃️ Table of Contents**
 
 - [About the project]()
-- [Back-end diagrams]()
+- [Back-end and Front-end diagrams]()
 - [Application flowchart]()
 - [Application in operation]()
 - [Instructions for execute the Project]()
